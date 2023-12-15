@@ -15,7 +15,7 @@ components:
             order: 1
             group: Basic
         cpu_core_count:
-          title: Cpu Core Count
+          title: CPU Core Count
           type: number
           description: 'The CPU core of the CVM instance, value range: [1, 384]'
           default: 2
