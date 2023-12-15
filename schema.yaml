@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: OpenAPI schema for template tencentcloud-cvm
+components:
+  schemas:
+    variables:
+      type: object
+      properties:
+        instance_name:
+          title: Instance Name
+          type: string
+          description: The instance name and hostname of the CVM instance
+          nullable: true
+          x-walrus-ui:
+            order: 1
+            group: Basic
+        cpu_core_count:
+          title: Cpu Core Count
+          type: number
+          description: 'The CPU core of the CVM instance, value range: [1, 384]'
+          default: 2
+          nullable: true
+          minimum: 1
+          maximum: 384
+          x-walrus-ui:
+            order: 2
+            group: Basic
+        memory_size:
+          title: Memory Size
+          type: number
+          description: 'The memory size of the CVM instance, value range: [1, 3072]'
+          default: 4
+          nullable: true
+          minimum: 1
+          maximum: 3072
+          x-walrus-ui:
+            order: 3
+            group: Basic
+        os_name:
+          title: OS Name
+          type: string
+          description: The image tag of the image used to launch the CVM instance,
+            refer to https://cloud.tencent.com/document/product/213/93093
+          default: Ubuntu Server 20.04
+          nullable: true
+          x-walrus-ui:
+            order: 4
+            group: Basic
+        system_disk_type:
+          title: System Disk Type
+          type: string
+          description: The type of the system disk, valid values are LOCAL_BASIC,
+            LOCAL_SSD, CLOUD_BASIC, CLOUD_SSD, CLOUD_PREMIUM, CLOUD_BSSD, CLOUD_HSSD,
+            CLOUD_TSSD, and related to the instance type
+          default: CLOUD_PREMIUM
+          nullable: true
+          enum:
+          - LOCAL_BASIC
+          - LOCAL_SSD
+          - CLOUD_BASIC
+          - CLOUD_SSD
+          - CLOUD_PREMIUM
+          - CLOUD_BSSD
+          - CLOUD_HSSD
+          - CLOUD_TSSD
+          x-walrus-ui:
+            order: 5
+            group: Basic
+        system_disk_size:
+          title: System Disk Size
+          type: number
+          description: 'The size of the system disk, value range: [20, 1024]'
+          default: 40
+          nullable: true
+          minimum: 20
+          maximum: 1024
+          x-walrus-ui:
+            order: 6
+            group: Basic
+        internet_charge_type:
+          title: Internet Charge Type
+          type: string
+          description: The billing method of the public network bandwidth, valid values
+            are BANDWIDTH_PREPAID, TRAFFIC_POSTPAID_BY_HOUR, BANDWIDTH_POSTPAID_BY_HOUR,
+            BANDWIDTH_PACKAGE
+          default: TRAFFIC_POSTPAID_BY_HOUR
+          nullable: true
+          enum:
+          - BANDWIDTH_PREPAID
+          - TRAFFIC_POSTPAID_BY_HOUR
+          - BANDWIDTH_POSTPAID_BY_HOUR
+          - BANDWIDTH_PACKAGE
+          x-walrus-ui:
+            order: 7
+            group: Advanced
+        internet_max_bandwidth_out:
+          title: Internet Max Bandwidth Out
+          type: number
+          description: 'The maximum outbound bandwidth of the public network, value
+            range: [1, 100]'
+          default: 10
+          nullable: true
+          minimum: 1
+          maximum: 100
+          x-walrus-ui:
+            order: 8
+            group: Advanced
+        init_script:
+          title: Init Script
+          type: string
+          description: User-defined init script to customize the startup behaviors
+            of the CVM instance and to pass data into the CVM instance, aka user_data_raw
+          default: |
+            #!/bin/bash
+            apt update
+          nullable: true
+          x-walrus-ui:
+            order: 9
+            group: Advanced
+            widget: TextArea
+        key_id:
+          title: Key Id
+          type: array
+          description: ID of the ssh private key, must already exist
+          default:
+          - skey-nvs2lydx
+          items:
+            type: string
+          nullable: true
+          x-walrus-ui:
+            colSpan: 12
+            order: 10
+            group: Advanced
